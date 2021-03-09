@@ -6,20 +6,27 @@ import columns from "./columns";
 import { getPeopleList, Person } from "./api";
 
 /* TODO: Implement debouncer */
-function debounce(func: () => void, wait: number, immediate = true) {
+function debounce(func: () => void, wait: number) {
+  return () => func();
 }
 
 function App() {
   const [data, setData] = useState<Person[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  /* TODO: Implement search filter */
+  const filter = useCallback(() => {
+    /* TODO: Implement search filter */
+  }, []);
+
+  const debouncedFilter = useCallback(() =>{
+    debounce(filter, 1000)();
+  }, [ filter ]);
 
   const fetchPeople = useCallback(() => {
     setIsLoading(true);
     getPeopleList()
-      .then((data) => {
-        setData(data);
+      .then(response => {
+        setData(response);
         setIsLoading(false);
       })
       .catch((e) => console.error(e));
@@ -46,6 +53,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
