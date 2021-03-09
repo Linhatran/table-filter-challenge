@@ -1,18 +1,23 @@
-import React, { useEffect, useState, useCallback } from "react";
 import { Col, Input, Row, Table } from "antd";
+import React, { useEffect, useState, useCallback } from "react";
+
+import { getPeopleList, Person } from "./api";
+import columns from "./columns";
+
 import "./App.css";
 
-import columns from "./columns";
-import { getPeopleList, Person } from "./api";
-
 /* TODO: Implement debouncer */
+let timer: NodeJS.Timeout | undefined;
 function debounce(func: () => void, wait: number) {
-  return () => func();
+  return () => {
+    /* TODO */
+    func();
+  };
 }
 
 function App() {
-  const [data, setData] = useState<Person[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [ data, setData ] = useState<Person[]>([]);
+  const [ isLoading, setIsLoading ] = useState(false);
 
   const filter = useCallback(() => {
     /* TODO: Implement search filter */

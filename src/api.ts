@@ -10,6 +10,6 @@ export interface Person {
 
 export const getPeopleList = (): Promise<Person[]> => {
   return new Promise((resolve) => {
-    setTimeout(() => resolve(data), 3000);
+    setTimeout(() => resolve(data), 200);
   });
 };
