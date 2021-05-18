@@ -10,12 +10,8 @@ import './App.css';
 let timer: ReturnType<typeof setTimeout>;
 function debounce(func: () => void, wait: number) {
   return () => {
-    /* TODO */
-    // return function (this: any, ...args: any[]) {
     clearTimeout(timer);
     timer = setTimeout(() => func(), wait);
-    // };
-    // func();
   };
 }
 
